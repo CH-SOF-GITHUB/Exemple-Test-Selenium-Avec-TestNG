@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!--Exécution les tests en parallèle sur Chrome et Edge-->
+<!--<suite name="Test">
+    <test name="Test avec parameters chrome">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="tested.SeleniumTest"/>
+        </classes>
+    </test>
+    <test name="Test avec parameters edge">
+        <parameter name="browser" value="edge"/>
+        <classes>
+            <class name="tested.SeleniumTest"/>
+        </classes>
+    </test>
+</suite>-->
+<!--Parallélisme avec parallel="instances"-->
+<!--<suite name="All Test Suite" parallel="instances" thread-count="3">
+    <test name="test sur chrome">
+        <classes>
+            <class name="ParalleleTests.ParalleleInstanceTest">
+                <parameter name="browser" value="Chrome"/>
+            </class>
+        </classes>
+    </test>
+    <test name="test sur firefox">
+        <classes>
+            <class name="ParalleleTests.ParalleleInstanceTest">
+                <parameter name="browser" value="Firefox"/>
+            </class>
+        </classes>
+    </test>
+</suite>-->
+<!--Exécution parallèle au niveau des tests (dans <suite>)-->
+<!--<suite name="All Test Suite" parallel="tests" thread-count="2">
+    <test name="ParallelTests1">
+        <classes>
+            <class name="ParalleleTests.ParalleleTest2"/>
+        </classes>
+    </test>
+    <test name="ParallelTests2">
+        <classes>
+            <class name="ParalleleTests.ParalleleTest3"/>
+        </classes>
+    </test>
+</suite>-->
+<!--Exécution parallèle au niveau des classes-->
+<suite name="All Test Suite" parallel="classes" thread-count="2">
+    <test name="ParallelTestClasses">
+        <classes>
+            <class name="tested.TestData"/>
+        </classes>
+    </test>
+</suite>
+        <!--Exécution parallèle au niveau des méthodes-->
+        <!--suite name="All Test Suite" parallel="methods" thread-count="3">
+            <test name="ParallelTestMethods">
+                <classes>
+                    <class name="ParalleleTests.ParalleleTest1"/>
+                </classes>
+            </test>
+        </suite>-->
+
+        <!--<suite name="All Test Suite" parallel="tests" thread-count="2">
+            <test name="Test1">
+                <classes>
+                    <class name="tested.SeleniumTest"/>
+                </classes>
+            </test>
+            <test name="Test2">
+                <classes>
+                    <class name="tested.TestData"/>
+                </classes>
+            </test>
+        </suite>-->

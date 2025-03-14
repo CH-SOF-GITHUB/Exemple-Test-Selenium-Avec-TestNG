@@ -2,26 +2,39 @@ package tested;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 
 import java.time.Duration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Base {
-    // web driver
-    WebDriver driver;
-
-    @BeforeTest
-    public void beforeTest() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        System.out.println("avant chaque test");
+    static {
+        Logger.getLogger("org.openqa.selenium").setLevel(Level.SEVERE); // Cache les logs Selenium sauf erreurs critiques
     }
 
-    @AfterTest
+    public Base() {
+    }
+
+    // créer une variable locale à chaque Thread (chaque test a son propre web driver)
+    public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+
+    @BeforeMethod
+    public void beforeTest() {
+        System.out.println("avant chaque test");
+        driver.set(new ChromeDriver());
+    }
+
+    public static WebDriver getDriver() {
+        return driver.get();
+    }
+
+    @AfterMethod
     public void afterTest() {
-        driver.close();
+        if (driver.get() != null) {
+            driver.get().quit();
+            driver.remove();
+        }
         System.out.println("aprés chaque test");
     }
 }
